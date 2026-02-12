@@ -8,11 +8,11 @@ const Footer = () => {
           <div className="flex items-center gap-3">
             <Scale className="w-5 h-5 text-gold" />
             <span className="font-heading text-lg font-bold text-primary-foreground">
-              <span className="text-gold">Dr.</span> Advogado
+              <span className="text-gold">Dr.</span> Pedro Nelson Maia
             </span>
           </div>
           <p className="font-body text-sm text-primary-foreground/60 text-center">
-            © {new Date().getFullYear()} — Todos os direitos reservados. OAB/UF 000.000
+            © {new Date().getFullYear()} — Todos os direitos reservados. OAB/PI 24.263
           </p>
         </div>
       </div>
