@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Shield, Heart, FileText, Clock, Scale, Users } from "lucide-react";
-
+import justiceColumns from "@/assets/justice-columns.jpg";
 const services = [
   {
     icon: Clock,
@@ -36,8 +36,13 @@ const services = [
 
 const Services = () => {
   return (
-    <section id="areas" className="py-24 bg-warm">
-      <div className="container mx-auto px-6 lg:px-12">
+    <section id="areas" className="relative py-24 overflow-hidden">
+      {/* Background image */}
+      <div className="absolute inset-0">
+        <img src={justiceColumns} alt="" className="w-full h-full object-cover" />
+        <div className="absolute inset-0 bg-warm/95" />
+      </div>
+      <div className="relative z-10 container mx-auto px-6 lg:px-12">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
