@@ -27,10 +27,9 @@ const Contact = () => {
 
             <div className="space-y-6">
               {[
-                { icon: MessageCircle, label: "WhatsApp", value: "(00) 00000-0000", href: "https://wa.me/5500000000000" },
-                { icon: Phone, label: "Telefone", value: "(00) 0000-0000", href: "tel:+550000000000" },
-                { icon: Mail, label: "E-mail", value: "contato@advogado.com.br", href: "mailto:contato@advogado.com.br" },
-                { icon: MapPin, label: "Endereço", value: "Rua Exemplo, 123 - Centro, Cidade/UF", href: "#" },
+                { icon: MessageCircle, label: "WhatsApp", value: "(86) 99834-8891", href: "https://wa.me/5586998348891" },
+                { icon: Phone, label: "Telefone", value: "(86) 99834-8891", href: "tel:+5586998348891" },
+                { icon: Mail, label: "E-mail", value: "nelsonmaiaadv@gmail.com", href: "mailto:nelsonmaiaadv@gmail.com" },
               ].map((item) => (
                 <a
                   key={item.label}
