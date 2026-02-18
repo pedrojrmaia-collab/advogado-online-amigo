@@ -30,6 +30,7 @@ const Contact = () => {
                 { icon: MessageCircle, label: "WhatsApp", value: "(86) 99834-8891", href: "https://wa.me/5586998348891" },
                 { icon: Phone, label: "Telefone", value: "(86) 99834-8891", href: "tel:+5586998348891" },
                 { icon: Mail, label: "E-mail", value: "nelsonmaiaadv@gmail.com", href: "mailto:nelsonmaiaadv@gmail.com" },
+                { icon: MapPin, label: "Endereço", value: "R. Gov. Tibério Nunes, 329 - Frei Serafim, Teresina - PI, 64000-710", href: "https://maps.google.com/?q=R.+Gov.+Tibério+Nunes,+329+-+Frei+Serafim,+Teresina+-+PI,+64000-710" },
               ].map((item) => (
                 <a
                   key={item.label}
