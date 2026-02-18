@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { FolderSearch, Target, Smartphone } from "lucide-react";
 import advogadoSobre from "@/assets/advogado-sobre.jpeg";
 
 const About = () => {
@@ -45,15 +46,18 @@ const About = () => {
             <p className="text-muted-foreground font-body text-lg leading-relaxed mb-8">
               Acredito que cada cliente merece um atendimento personalizado, com transparência em cada etapa do processo. Trabalho para simplificar o que parece complexo e garantir que seus direitos sejam respeitados.
             </p>
-            <div className="grid grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
               {[
-                { number: "500+", label: "Clientes atendidos" },
-                { number: "95%", label: "Aprovação" },
-                { number: "10+", label: "Anos de experiência" },
-              ].map((stat) => (
-                <div key={stat.label} className="text-center">
-                  <p className="font-heading text-2xl md:text-3xl font-bold text-gold">{stat.number}</p>
-                  <p className="font-body text-sm text-muted-foreground mt-1">{stat.label}</p>
+                { icon: FolderSearch, title: "+200 Casos Analisados", subtitle: "Experiência prática em diagnósticos previdenciários e planejamentos." },
+                { icon: Target, title: "Estratégia Personalizada", subtitle: "Soluções jurídicas desenhadas especificamente para o seu histórico de contribuição." },
+                { icon: Smartphone, title: "Advocacia Digital", subtitle: "Agilidade no protocolo e acompanhamento do seu benefício, onde você estiver." },
+              ].map((item) => (
+                <div key={item.title} className="flex flex-col items-center text-center p-4 rounded-xl bg-warm/60">
+                  <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-3">
+                    <item.icon className="w-6 h-6 text-gold" />
+                  </div>
+                  <p className="font-heading text-lg font-semibold text-foreground mb-1">{item.title}</p>
+                  <p className="font-body text-sm text-muted-foreground leading-relaxed">{item.subtitle}</p>
                 </div>
               ))}
             </div>
