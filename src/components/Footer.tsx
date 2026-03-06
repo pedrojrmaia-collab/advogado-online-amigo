@@ -1,4 +1,5 @@
 import { Scale } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -10,6 +11,11 @@ const Footer = () => {
             <span className="font-heading text-lg font-bold text-primary-foreground">
               <span className="text-gold">Dr.</span> Pedro Nelson Maia
             </span>
+          </div>
+          <div className="flex items-center gap-6">
+            <Link to="/blog" className="font-body text-sm text-primary-foreground/60 hover:text-gold transition-colors">
+              Blog
+            </Link>
           </div>
           <p className="font-body text-sm text-primary-foreground/60 text-center">
             R. Gov. Tibério Nunes, 329 - Frei Serafim, Teresina - PI, 64000-710
