@@ -1,12 +1,14 @@
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
+import { Link, useLocation } from "react-router-dom";
 
 const navLinks = [
-  { label: "Início", href: "#" },
-  { label: "Sobre", href: "#sobre" },
-  { label: "Áreas de Atuação", href: "#areas" },
-  { label: "Depoimentos", href: "#depoimentos" },
-  { label: "Contato", href: "#contato" },
+  { label: "Início", href: "/" },
+  { label: "Sobre", href: "/#sobre" },
+  { label: "Áreas de Atuação", href: "/#areas" },
+  { label: "Depoimentos", href: "/#depoimentos" },
+  { label: "Blog", href: "/blog" },
+  { label: "Contato", href: "/#contato" },
 ];
 
 const Navbar = () => {
@@ -21,15 +23,25 @@ const Navbar = () => {
 
         {/* Desktop */}
         <div className="hidden md:flex items-center gap-8">
-          {navLinks.map((link) => (
-            <a
-              key={link.label}
-              href={link.href}
-              className="font-body text-sm text-primary-foreground/80 hover:text-gold transition-colors"
-            >
-              {link.label}
-            </a>
-          ))}
+          {navLinks.map((link) =>
+            link.href.startsWith("/") && !link.href.includes("#") ? (
+              <Link
+                key={link.label}
+                to={link.href}
+                className="font-body text-sm text-primary-foreground/80 hover:text-gold transition-colors"
+              >
+                {link.label}
+              </Link>
+            ) : (
+              <a
+                key={link.label}
+                href={link.href}
+                className="font-body text-sm text-primary-foreground/80 hover:text-gold transition-colors"
+              >
+                {link.label}
+              </a>
+            )
+          )}
         </div>
 
         {/* Mobile toggle */}
@@ -44,16 +56,27 @@ const Navbar = () => {
       {/* Mobile menu */}
       {open && (
         <div className="md:hidden bg-primary/95 backdrop-blur-md border-t border-primary-foreground/10 px-6 pb-6">
-          {navLinks.map((link) => (
-            <a
-              key={link.label}
-              href={link.href}
-              onClick={() => setOpen(false)}
-              className="block py-3 font-body text-primary-foreground/80 hover:text-gold transition-colors"
-            >
-              {link.label}
-            </a>
-          ))}
+          {navLinks.map((link) =>
+            link.href.startsWith("/") && !link.href.includes("#") ? (
+              <Link
+                key={link.label}
+                to={link.href}
+                onClick={() => setOpen(false)}
+                className="block py-3 font-body text-primary-foreground/80 hover:text-gold transition-colors"
+              >
+                {link.label}
+              </Link>
+            ) : (
+              <a
+                key={link.label}
+                href={link.href}
+                onClick={() => setOpen(false)}
+                className="block py-3 font-body text-primary-foreground/80 hover:text-gold transition-colors"
+              >
+                {link.label}
+              </a>
+            )
+          )}
         </div>
       )}
     </nav>
