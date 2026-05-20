@@ -17,6 +17,7 @@ import {
   MapPin,
   MessageCircle,
   ArrowRight,
+  Quote,
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import WhatsAppButton from "@/components/WhatsAppButton";
@@ -40,6 +41,21 @@ const pessoal = [
   { icon: HeartPulse, title: "Isenção de Imposto de Renda", desc: "Para aposentados e pensionistas portadores de doenças graves previstas em lei." },
   { icon: GraduationCap, title: "Dedução Integral de Educação", desc: "Direito de dedução total dos gastos educacionais para pessoas com TEA (autismo)." },
   { icon: Car, title: "Isenção de IPVA", desc: "Para pessoas com deficiência, autistas e seus representantes legais." },
+];
+
+const depoimentos = [
+  {
+    text: "A atuação na defesa da nossa execução fiscal foi cirúrgica. Conseguimos não apenas o desbloqueio rápido das contas da empresa, mas também o fôlego necessário para reestruturar nosso passivo.",
+    author: "Indústria do Setor de Construção Civil",
+  },
+  {
+    text: "O planejamento tributário nos mostrou que estávamos pagando impostos a mais por anos. A recuperação desses créditos mudou o fluxo de caixa da nossa clínica.",
+    author: "Clínica Médica Especializada",
+  },
+  {
+    text: "Enfrentei muita burocracia para conseguir a isenção do meu imposto de renda por doença grave. A assessoria jurídica foi rápida, humana e resolveu o que eu não conseguia sozinho.",
+    author: "Pessoa Física / Aposentado",
+  },
 ];
 
 const ServiceCard = ({ icon: Icon, title, desc, i }: any) => (
@@ -162,6 +178,53 @@ const Tributario = () => {
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {pessoal.map((s, i) => (
               <ServiceCard key={s.title} {...s} i={i} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Prova Social */}
+      <section className="py-24 bg-warm/40 border-y border-border/40">
+        <div className="container mx-auto px-6 lg:px-12">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="max-w-2xl mx-auto text-center mb-16"
+          >
+            <p className="text-gold font-body text-xs tracking-[0.3em] uppercase mb-4">
+              Prova Social
+            </p>
+            <h2 className="font-heading text-3xl md:text-4xl font-bold text-foreground mb-5">
+              Impacto Gerado e <span className="text-gradient-gold">Confiança</span>
+            </h2>
+            <p className="text-muted-foreground font-body text-lg leading-relaxed">
+              Resultados sólidos e estratégias tributárias que protegem o patrimônio
+              de quem confia em nosso trabalho.
+            </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
+            {depoimentos.map((d, i) => (
+              <motion.div
+                key={d.author}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
+                className="relative bg-card border border-border/60 rounded-2xl p-8 sm:p-10 hover:border-gold/50 hover:shadow-xl transition-all flex flex-col"
+              >
+                <Quote className="w-8 h-8 text-gold/70 mb-5" strokeWidth={1.5} />
+                <p className="font-body text-base md:text-[17px] text-foreground/85 leading-relaxed italic mb-8 flex-1">
+                  “{d.text}”
+                </p>
+                <div className="pt-5 border-t border-border/60">
+                  <p className="font-heading text-sm font-semibold text-primary">
+                    — {d.author}
+                  </p>
+                </div>
+              </motion.div>
             ))}
           </div>
         </div>
