@@ -245,11 +245,7 @@ const Tributario = () => {
               Teses e benefícios para <span className="text-gradient-gold">você e sua família</span>
             </h2>
           </motion.div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {pessoal.map((s, i) => (
-              <ServiceCard key={s.title} {...s} i={i} />
-            ))}
-          </div>
+          <ServiceCarousel items={pessoal} desktopCols="lg:grid-cols-4" />
         </div>
       </section>
 
