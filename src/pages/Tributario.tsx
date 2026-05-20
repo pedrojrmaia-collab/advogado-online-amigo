@@ -224,11 +224,7 @@ const Tributario = () => {
               Soluções tributárias para <span className="text-gradient-gold">empresas</span>
             </h2>
           </motion.div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {empresarial.map((s, i) => (
-              <ServiceCard key={s.title} {...s} i={i} />
-            ))}
-          </div>
+          <ServiceCarousel items={empresarial} desktopCols="lg:grid-cols-4" />
         </div>
       </section>
 
