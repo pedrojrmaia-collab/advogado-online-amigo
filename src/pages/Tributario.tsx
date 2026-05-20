@@ -149,9 +149,16 @@ const Tributario = () => {
       {/* Minimal top bar */}
       <header className="fixed top-0 left-0 right-0 z-40 bg-primary/95 backdrop-blur-md border-b border-primary-foreground/10">
         <div className="container mx-auto px-6 lg:px-12 h-16 flex items-center justify-between">
-          <Link to="/" className="flex items-center gap-2 font-heading text-lg font-bold text-primary-foreground">
-            <Scale className="w-5 h-5 text-gold" />
-            <span><span className="text-gold">Dr.</span> Pedro Nelson Maia</span>
+          <Link to="/" className="flex items-center gap-3">
+            <Scale className="w-6 h-6 text-gold shrink-0" />
+            <span className="flex flex-col leading-tight">
+              <span className="font-heading text-base sm:text-lg font-bold text-primary-foreground">
+                Nelson Maia <span className="text-gold">Advocacia Tributária</span>
+              </span>
+              <span className="font-body text-[10px] sm:text-xs tracking-wider text-primary-foreground/60 italic">
+                Dr. Pedro Nelson Maia
+              </span>
+            </span>
           </Link>
           <a
             href={WHATSAPP_URL}
