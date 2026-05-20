@@ -259,9 +259,6 @@ const Tributario = () => {
             transition={{ duration: 0.6 }}
             className="max-w-2xl mx-auto text-center mb-16"
           >
-            <p className="text-gold font-body text-xs tracking-[0.3em] uppercase mb-4">
-              Prova Social
-            </p>
             <h2 className="font-heading text-3xl md:text-4xl font-bold text-foreground mb-5">
               Impacto Gerado e <span className="text-gradient-gold">Confiança</span>
             </h2>
