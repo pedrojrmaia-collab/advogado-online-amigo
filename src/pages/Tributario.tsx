@@ -183,6 +183,53 @@ const Tributario = () => {
         </div>
       </section>
 
+      {/* Prova Social */}
+      <section className="py-24 bg-warm/40 border-y border-border/40">
+        <div className="container mx-auto px-6 lg:px-12">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="max-w-2xl mx-auto text-center mb-16"
+          >
+            <p className="text-gold font-body text-xs tracking-[0.3em] uppercase mb-4">
+              Prova Social
+            </p>
+            <h2 className="font-heading text-3xl md:text-4xl font-bold text-foreground mb-5">
+              Impacto Gerado e <span className="text-gradient-gold">Confiança</span>
+            </h2>
+            <p className="text-muted-foreground font-body text-lg leading-relaxed">
+              Resultados sólidos e estratégias tributárias que protegem o patrimônio
+              de quem confia em nosso trabalho.
+            </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
+            {depoimentos.map((d, i) => (
+              <motion.div
+                key={d.author}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
+                className="relative bg-card border border-border/60 rounded-2xl p-8 sm:p-10 hover:border-gold/50 hover:shadow-xl transition-all flex flex-col"
+              >
+                <Quote className="w-8 h-8 text-gold/70 mb-5" strokeWidth={1.5} />
+                <p className="font-body text-base md:text-[17px] text-foreground/85 leading-relaxed italic mb-8 flex-1">
+                  “{d.text}”
+                </p>
+                <div className="pt-5 border-t border-border/60">
+                  <p className="font-heading text-sm font-semibold text-primary">
+                    — {d.author}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Profissional */}
       <section className="py-24 bg-background">
         <div className="container mx-auto px-6 lg:px-12">
