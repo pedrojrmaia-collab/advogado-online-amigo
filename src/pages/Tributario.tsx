@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import {
   Scale,
@@ -64,7 +65,7 @@ const ServiceCard = ({ icon: Icon, title, desc, i }: any) => (
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true }}
     transition={{ duration: 0.5, delay: i * 0.05 }}
-    className="group relative bg-card border border-border/60 rounded-2xl p-7 hover:border-gold/50 hover:shadow-xl transition-all"
+    className="group relative bg-card border border-border/60 rounded-2xl p-7 hover:border-gold/50 hover:shadow-xl transition-all h-full"
   >
     <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-5 group-hover:bg-gold/20 transition-colors">
       <Icon className="w-6 h-6 text-gold" />
@@ -76,15 +77,88 @@ const ServiceCard = ({ icon: Icon, title, desc, i }: any) => (
   </motion.div>
 );
 
+const ServiceCarousel = ({ items, desktopCols = "lg:grid-cols-4" }: { items: any[]; desktopCols?: string }) => {
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+    const onScroll = () => {
+      const cardWidth = el.scrollWidth / items.length;
+      setActiveIndex(Math.round(el.scrollLeft / cardWidth));
+    };
+    el.addEventListener("scroll", onScroll, { passive: true });
+    return () => el.removeEventListener("scroll", onScroll);
+  }, [items.length]);
+
+  const scrollTo = (i: number) => {
+    const el = scrollRef.current;
+    if (!el) return;
+    const cardWidth = el.scrollWidth / items.length;
+    el.scrollTo({ left: cardWidth * i, behavior: "smooth" });
+  };
+
+  return (
+    <>
+      {/* Desktop grid */}
+      <div className={`hidden md:grid sm:grid-cols-2 ${desktopCols} gap-6`}>
+        {items.map((s, i) => (
+          <ServiceCard key={s.title} {...s} i={i} />
+        ))}
+      </div>
+
+      {/* Mobile carousel */}
+      <div className="md:hidden -mx-6">
+        <div
+          ref={scrollRef}
+          className="flex gap-4 overflow-x-auto snap-x snap-mandatory scroll-smooth px-6 pb-2"
+          style={{ scrollbarWidth: "none" }}
+        >
+          {items.map((s, i) => (
+            <div
+              key={s.title}
+              className="snap-start shrink-0 w-[82%]"
+            >
+              <ServiceCard {...s} i={i} />
+            </div>
+          ))}
+          <div className="shrink-0 w-2" aria-hidden />
+        </div>
+        <div className="flex justify-center gap-2 mt-6">
+          {items.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => scrollTo(i)}
+              aria-label={`Ir para card ${i + 1}`}
+              className={`h-2 rounded-full transition-all ${
+                activeIndex === i ? "w-6 bg-gold" : "w-2 bg-border"
+              }`}
+            />
+          ))}
+        </div>
+      </div>
+    </>
+  );
+};
+
+
 const Tributario = () => {
   return (
     <div className="min-h-screen bg-background">
       {/* Minimal top bar */}
       <header className="fixed top-0 left-0 right-0 z-40 bg-primary/95 backdrop-blur-md border-b border-primary-foreground/10">
         <div className="container mx-auto px-6 lg:px-12 h-16 flex items-center justify-between">
-          <Link to="/" className="flex items-center gap-2 font-heading text-lg font-bold text-primary-foreground">
-            <Scale className="w-5 h-5 text-gold" />
-            <span><span className="text-gold">Dr.</span> Pedro Nelson Maia</span>
+          <Link to="/" className="flex items-center gap-3">
+            <Scale className="w-6 h-6 text-gold shrink-0" />
+            <span className="flex flex-col leading-tight">
+              <span className="font-heading text-base sm:text-lg font-bold text-primary-foreground">
+                Nelson Maia <span className="text-gold">Advocacia Tributária</span>
+              </span>
+              <span className="font-body text-[10px] sm:text-xs tracking-wider text-primary-foreground/60 italic">
+                Dr. Pedro Nelson Maia
+              </span>
+            </span>
           </Link>
           <a
             href={WHATSAPP_URL}
@@ -150,11 +224,7 @@ const Tributario = () => {
               Soluções tributárias para <span className="text-gradient-gold">empresas</span>
             </h2>
           </motion.div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {empresarial.map((s, i) => (
-              <ServiceCard key={s.title} {...s} i={i} />
-            ))}
-          </div>
+          <ServiceCarousel items={empresarial} desktopCols="lg:grid-cols-4" />
         </div>
       </section>
 
@@ -175,11 +245,7 @@ const Tributario = () => {
               Teses e benefícios para <span className="text-gradient-gold">você e sua família</span>
             </h2>
           </motion.div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {pessoal.map((s, i) => (
-              <ServiceCard key={s.title} {...s} i={i} />
-            ))}
-          </div>
+          <ServiceCarousel items={pessoal} desktopCols="lg:grid-cols-4" />
         </div>
       </section>
 
@@ -193,9 +259,6 @@ const Tributario = () => {
             transition={{ duration: 0.6 }}
             className="max-w-2xl mx-auto text-center mb-16"
           >
-            <p className="text-gold font-body text-xs tracking-[0.3em] uppercase mb-4">
-              Prova Social
-            </p>
             <h2 className="font-heading text-3xl md:text-4xl font-bold text-foreground mb-5">
               Impacto Gerado e <span className="text-gradient-gold">Confiança</span>
             </h2>
@@ -339,11 +402,30 @@ const Tributario = () => {
       </section>
 
       {/* Footer */}
-      <footer className="bg-primary border-t border-primary-foreground/10 py-8">
-        <div className="container mx-auto px-6 lg:px-12 text-center">
-          <p className="font-body text-sm text-primary-foreground/60">
-            © {new Date().getFullYear()} Dr. Pedro Nelson Maia — Todos os direitos reservados. OAB/PI 24.263
-          </p>
+      <footer className="bg-primary border-t border-primary-foreground/10 py-10">
+        <div className="container mx-auto px-6 lg:px-12">
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6 text-center md:text-left">
+            <div className="space-y-1">
+              <p className="font-heading text-base font-semibold text-primary-foreground">
+                Nelson Maia <span className="text-gold">Advocacia Tributária</span>
+              </p>
+              <p className="font-body text-xs text-primary-foreground/60 italic">
+                Dr. Pedro Nelson Maia
+              </p>
+            </div>
+            <div className="font-body text-xs text-primary-foreground/70 space-y-1">
+              <p>R. Gov. Tibério Nunes, 329 — Frei Serafim, Teresina/PI · 64000-710</p>
+              <p>(86) 99834-8891 · nelsonmaiaadv@gmail.com</p>
+              <p className="text-primary-foreground/50">
+                CNPJ: 57.314.555/0001-25 · OAB/PI 24.263
+              </p>
+            </div>
+          </div>
+          <div className="mt-8 pt-6 border-t border-primary-foreground/10 text-center">
+            <p className="font-body text-xs text-primary-foreground/50">
+              © {new Date().getFullYear()} Nelson Maia Advocacia Tributária — Todos os direitos reservados.
+            </p>
+          </div>
         </div>
       </footer>
 
