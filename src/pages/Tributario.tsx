@@ -65,7 +65,7 @@ const ServiceCard = ({ icon: Icon, title, desc, i }: any) => (
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true }}
     transition={{ duration: 0.5, delay: i * 0.05 }}
-    className="group relative bg-card border border-border/60 rounded-2xl p-7 hover:border-gold/50 hover:shadow-xl transition-all"
+    className="group relative bg-card border border-border/60 rounded-2xl p-7 hover:border-gold/50 hover:shadow-xl transition-all h-full"
   >
     <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-5 group-hover:bg-gold/20 transition-colors">
       <Icon className="w-6 h-6 text-gold" />
@@ -76,6 +76,72 @@ const ServiceCard = ({ icon: Icon, title, desc, i }: any) => (
     <p className="font-body text-sm text-muted-foreground leading-relaxed">{desc}</p>
   </motion.div>
 );
+
+const ServiceCarousel = ({ items, desktopCols = "lg:grid-cols-4" }: { items: any[]; desktopCols?: string }) => {
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+    const onScroll = () => {
+      const cardWidth = el.scrollWidth / items.length;
+      setActiveIndex(Math.round(el.scrollLeft / cardWidth));
+    };
+    el.addEventListener("scroll", onScroll, { passive: true });
+    return () => el.removeEventListener("scroll", onScroll);
+  }, [items.length]);
+
+  const scrollTo = (i: number) => {
+    const el = scrollRef.current;
+    if (!el) return;
+    const cardWidth = el.scrollWidth / items.length;
+    el.scrollTo({ left: cardWidth * i, behavior: "smooth" });
+  };
+
+  return (
+    <>
+      {/* Desktop grid */}
+      <div className={`hidden md:grid sm:grid-cols-2 ${desktopCols} gap-6`}>
+        {items.map((s, i) => (
+          <ServiceCard key={s.title} {...s} i={i} />
+        ))}
+      </div>
+
+      {/* Mobile carousel */}
+      <div className="md:hidden -mx-6">
+        <div
+          ref={scrollRef}
+          className="flex gap-4 overflow-x-auto snap-x snap-mandatory scroll-smooth px-6 pb-2"
+          style={{ scrollbarWidth: "none" }}
+        >
+          {items.map((s, i) => (
+            <div
+              key={s.title}
+              className="snap-start shrink-0 w-[82%]"
+            >
+              <ServiceCard {...s} i={i} />
+            </div>
+          ))}
+          <div className="shrink-0 w-2" aria-hidden />
+        </div>
+        <div className="flex justify-center gap-2 mt-6">
+          {items.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => scrollTo(i)}
+              aria-label={`Ir para card ${i + 1}`}
+              className={`h-2 rounded-full transition-all ${
+                activeIndex === i ? "w-6 bg-gold" : "w-2 bg-border"
+              }`}
+            />
+          ))}
+        </div>
+      </div>
+    </>
+  );
+};
+
 
 const Tributario = () => {
   return (
