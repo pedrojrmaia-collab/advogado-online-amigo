@@ -402,11 +402,30 @@ const Tributario = () => {
       </section>
 
       {/* Footer */}
-      <footer className="bg-primary border-t border-primary-foreground/10 py-8">
-        <div className="container mx-auto px-6 lg:px-12 text-center">
-          <p className="font-body text-sm text-primary-foreground/60">
-            © {new Date().getFullYear()} Dr. Pedro Nelson Maia — Todos os direitos reservados. OAB/PI 24.263
-          </p>
+      <footer className="bg-primary border-t border-primary-foreground/10 py-10">
+        <div className="container mx-auto px-6 lg:px-12">
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6 text-center md:text-left">
+            <div className="space-y-1">
+              <p className="font-heading text-base font-semibold text-primary-foreground">
+                Nelson Maia <span className="text-gold">Advocacia Tributária</span>
+              </p>
+              <p className="font-body text-xs text-primary-foreground/60 italic">
+                Dr. Pedro Nelson Maia
+              </p>
+            </div>
+            <div className="font-body text-xs text-primary-foreground/70 space-y-1">
+              <p>R. Gov. Tibério Nunes, 329 — Frei Serafim, Teresina/PI · 64000-710</p>
+              <p>(86) 99834-8891 · nelsonmaiaadv@gmail.com</p>
+              <p className="text-primary-foreground/50">
+                CNPJ: 57.314.555/0001-25 · OAB/PI 24.263
+              </p>
+            </div>
+          </div>
+          <div className="mt-8 pt-6 border-t border-primary-foreground/10 text-center">
+            <p className="font-body text-xs text-primary-foreground/50">
+              © {new Date().getFullYear()} Nelson Maia Advocacia Tributária — Todos os direitos reservados.
+            </p>
+          </div>
         </div>
       </footer>
 
