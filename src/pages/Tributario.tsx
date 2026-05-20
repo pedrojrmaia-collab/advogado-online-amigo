@@ -43,6 +43,21 @@ const pessoal = [
   { icon: Car, title: "Isenção de IPVA", desc: "Para pessoas com deficiência, autistas e seus representantes legais." },
 ];
 
+const depoimentos = [
+  {
+    text: "A atuação na defesa da nossa execução fiscal foi cirúrgica. Conseguimos não apenas o desbloqueio rápido das contas da empresa, mas também o fôlego necessário para reestruturar nosso passivo.",
+    author: "Indústria do Setor de Construção Civil",
+  },
+  {
+    text: "O planejamento tributário nos mostrou que estávamos pagando impostos a mais por anos. A recuperação desses créditos mudou o fluxo de caixa da nossa clínica.",
+    author: "Clínica Médica Especializada",
+  },
+  {
+    text: "Enfrentei muita burocracia para conseguir a isenção do meu imposto de renda por doença grave. A assessoria jurídica foi rápida, humana e resolveu o que eu não conseguia sozinho.",
+    author: "Pessoa Física / Aposentado",
+  },
+];
+
 const ServiceCard = ({ icon: Icon, title, desc, i }: any) => (
   <motion.div
     initial={{ opacity: 0, y: 30 }}
