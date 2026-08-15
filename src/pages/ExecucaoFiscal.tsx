@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
-import { Unlock, FileSearch, ShieldCheck, MessageCircle, Phone, Mail, MapPin } from "lucide-react";
+import { Unlock, FileSearch, ShieldCheck, Handshake, Scale, MessageCircle, Phone, Mail, MapPin } from "lucide-react";
+
 
 const WHATSAPP_URL =
   "https://wa.me/5586998348891?text=Ol%C3%A1%2C%20recebi%20uma%20cita%C3%A7%C3%A3o%20de%20execu%C3%A7%C3%A3o%20fiscal%20e%20preciso%20de%20ajuda%20urgente";
@@ -17,12 +18,22 @@ const cards = [
   {
     icon: FileSearch,
     title: "Exceção de Pré-Executividade",
-    text: "Identificação ágil de erros do Fisco, prescrições e cobranças indevidas. Atuamos para extinguir a dívida rapidamente, muitas vezes sem a necessidade de garantir o juízo com seus bens.",
+    text: "Defesa sem garantir o juízo, quando cabível. Atuação para extinguir a dívida rapidamente através da identificação ágil de erros do Fisco em matérias que o juiz pode conhecer de ofício.",
   },
   {
     icon: ShieldCheck,
     title: "Embargos à Execução",
-    text: "Construção de defesa técnica ampla e robusta. Buscamos suspender leilões e debater a validade de multas confiscatórias e juros abusivos exigidos pela Fazenda Pública.",
+    text: "A defesa ampla, no prazo da lei. Construção de argumentação técnica robusta para discutir o débito em profundidade, envolvendo origem, cálculos e prescrição.",
+  },
+  {
+    icon: Handshake,
+    title: "Transação Tributária",
+    text: "Reduções e prazos previstos em lei. Avaliação técnica para identificar modalidades de acordo com a Fazenda Pública que permitam a redução de juros e multas de forma vantajosa e compatível com a sua capacidade de pagamento.",
+  },
+  {
+    icon: Scale,
+    title: "Soluções Estratégicas Complementares",
+    text: "Qual instrumento cabe depende do exame dos autos, do título e das garantias. Nossa análise técnica minuciosa mapeia outras diversas alternativas legais e administrativas aplicáveis especificamente ao seu caso, sempre atuando antes do fim do prazo e do bloqueio.",
   },
 ];
 
@@ -103,7 +114,7 @@ const ExecucaoFiscal = () => {
           </motion.div>
 
           <div className="grid gap-8 md:gap-10 lg:grid-cols-3">
-            {cards.map((card, i) => (
+            {cards.slice(0, 3).map((card, i) => (
               <motion.div
                 key={card.title}
                 initial={{ opacity: 0, y: 24 }}
@@ -121,6 +132,26 @@ const ExecucaoFiscal = () => {
                 <p className="font-body text-muted-foreground leading-relaxed">{card.text}</p>
               </motion.div>
             ))}
+            <div className="lg:col-span-3 flex flex-col lg:flex-row justify-center gap-8 md:gap-10">
+              {cards.slice(3).map((card, i) => (
+                <motion.div
+                  key={card.title}
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.3 + i * 0.1 }}
+                  className="w-full lg:w-1/3 rounded-2xl border border-border bg-card p-8 md:p-9 shadow-sm transition-all hover:border-gold/50 hover:shadow-lg"
+                >
+                  <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10">
+                    <card.icon className="h-6 w-6 text-gold" />
+                  </div>
+                  <h3 className="font-heading text-xl font-semibold text-foreground mb-3">
+                    {card.title}
+                  </h3>
+                  <p className="font-body text-muted-foreground leading-relaxed">{card.text}</p>
+                </motion.div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
