@@ -79,6 +79,8 @@ const ExecucaoFiscal = () => {
   const toggle = (index: number) => {
     setOpenIndex((current) => (current === index ? null : index));
   };
+
+  return (
     <div className="min-h-screen bg-background">
       {/* Header */}
       <header className="absolute top-0 left-0 right-0 z-40">
