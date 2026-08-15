@@ -18,8 +18,7 @@ const Footer = () => {
             </Link>
           </div>
           <p className="font-body text-sm text-primary-foreground/60 text-center">
-            R. Gov. Tibério Nunes, 329 - Frei Serafim, Teresina - PI, 64000-710
-          </p>
+            Rua Cinegrafista Marques, 561 - Fátima, Teresina/PI</p>
           <p className="font-body text-sm text-primary-foreground/60 text-center">
             © {new Date().getFullYear()} — Todos os direitos reservados. OAB/PI 24.263
           </p>

@@ -377,7 +377,7 @@ const Tributario = () => {
               { icon: MessageCircle, label: "WhatsApp", value: "(86) 99834-8891", href: WHATSAPP_URL },
               { icon: Phone, label: "Telefone", value: "(86) 99834-8891", href: "tel:+5586998348891" },
               { icon: Mail, label: "E-mail", value: "nelsonmaiaadv@gmail.com", href: "mailto:nelsonmaiaadv@gmail.com" },
-              { icon: MapPin, label: "Endereço", value: "R. Gov. Tibério Nunes, 329 - Frei Serafim, Teresina - PI", href: "https://maps.google.com/?q=R.+Gov.+Tibério+Nunes,+329+-+Frei+Serafim,+Teresina+-+PI,+64000-710" },
+              { icon: MapPin, label: "Endereço", value: "Rua Cinegrafista Marques, 561 - Fátima, Teresina/PI", href: "https://maps.google.com/?q=Rua+Cinegrafista+Marques,+561+-+Fátima,+Teresina+-+PI" },
             ].map((item) => (
               <a
                 key={item.label}
@@ -414,7 +414,7 @@ const Tributario = () => {
               </p>
             </div>
             <div className="font-body text-xs text-primary-foreground/70 space-y-1">
-              <p>R. Gov. Tibério Nunes, 329 — Frei Serafim, Teresina/PI · 64000-710</p>
+              <p>Rua Cinegrafista Marques, 561 - Fátima, Teresina/PI</p>
               <p>(86) 99834-8891 · nelsonmaiaadv@gmail.com</p>
               <p className="text-primary-foreground/50">
                 CNPJ: 57.314.555/0001-25 · OAB/PI 24.263
