@@ -1,4 +1,5 @@
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Unlock, FileSearch, ShieldCheck, Handshake, Scale, MessageCircle, Phone, Mail, MapPin } from "lucide-react";
 
 
@@ -44,7 +45,41 @@ const contacts = [
   { icon: MapPin, label: "Endereço", value: ADDRESS, href: MAPS_URL },
 ];
 
+const faq = [
+  {
+    question: "Discutir a dívida não vai piorar minha situação com o fisco?",
+    answer:
+      "Não. A defesa é um direito processual, exercida dentro do próprio processo, e não gera represália — os prazos e as cobranças correm de qualquer forma, com ou sem defesa.",
+  },
+  {
+    question: "Não é melhor simplesmente pagar?",
+    answer:
+      "Às vezes é — e um bom exame diz isso com franqueza. Pagar, discutir, transacionar ou aguardar são decisões que dependem do que a análise do título e dos cálculos mostrar.",
+  },
+  {
+    question: "Preciso de advogado da minha cidade?",
+    answer:
+      "Não. A execução fiscal federal corre em meio eletrônico e a defesa independe de presença física. O escritório atua em processos de todo o país.",
+  },
+  {
+    question: "Já fui citado. Ainda dá tempo?",
+    answer:
+      "Depende da data da citação e da fase do processo — por isso a análise do prazo é a primeira coisa que o escritório verifica. Quanto antes o exame começar, mais alternativas existem.",
+  },
+  {
+    question: "Quanto custa a análise?",
+    answer:
+      "Os honorários dependem da complexidade do caso e são sempre formalizados em contrato escrito, apresentado antes de qualquer contratação.",
+  },
+];
+
 const ExecucaoFiscal = () => {
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+
+  const toggle = (index: number) => {
+    setOpenIndex((current) => (current === index ? null : index));
+  };
+
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
@@ -152,6 +187,71 @@ const ExecucaoFiscal = () => {
                 </motion.div>
               ))}
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="bg-background py-20 md:py-28">
+        <div className="container mx-auto px-6 lg:px-12">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="max-w-3xl mb-14"
+          >
+            <div className="flex items-center gap-4 mb-4">
+              <span className="text-gold font-body text-xs tracking-[0.3em] uppercase">
+                DÚVIDAS FREQUENTES
+              </span>
+              <div className="h-px w-16 bg-gold/40" />
+            </div>
+            <h2 className="font-heading text-3xl md:text-4xl font-bold text-foreground">
+              Perguntas frequentes
+            </h2>
+          </motion.div>
+
+          <div className="max-w-3xl divide-y divide-border border-t border-border">
+            {faq.map((item, index) => {
+              const isOpen = openIndex === index;
+              return (
+                <div key={index} className="py-0">
+                  <button
+                    onClick={() => toggle(index)}
+                    className="flex w-full items-center justify-between gap-4 py-6 text-left transition-colors hover:text-gold focus:outline-none"
+                    aria-expanded={isOpen}
+                  >
+                    <span className="font-heading text-base md:text-lg font-medium text-foreground">
+                      {item.question}
+                    </span>
+                    <span
+                      className={`shrink-0 text-gold transition-transform duration-300 ${
+                        isOpen ? "rotate-180" : ""
+                      }`}
+                      aria-hidden="true"
+                    >
+                      ▼
+                    </span>
+                  </button>
+                  <AnimatePresence initial={false}>
+                    {isOpen && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.3, ease: "easeInOut" }}
+                        className="overflow-hidden"
+                      >
+                        <p className="font-body text-muted-foreground leading-relaxed pb-6">
+                          {item.answer}
+                        </p>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
