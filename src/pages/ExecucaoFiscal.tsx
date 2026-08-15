@@ -191,6 +191,71 @@ const ExecucaoFiscal = () => {
         </div>
       </section>
 
+      {/* FAQ */}
+      <section className="bg-background py-20 md:py-28">
+        <div className="container mx-auto px-6 lg:px-12">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="max-w-3xl mb-14"
+          >
+            <div className="flex items-center gap-4 mb-4">
+              <span className="text-gold font-body text-xs tracking-[0.3em] uppercase">
+                DÚVIDAS FREQUENTES
+              </span>
+              <div className="h-px w-16 bg-gold/40" />
+            </div>
+            <h2 className="font-heading text-3xl md:text-4xl font-bold text-foreground">
+              Perguntas frequentes
+            </h2>
+          </motion.div>
+
+          <div className="max-w-3xl divide-y divide-border border-t border-border">
+            {faq.map((item, index) => {
+              const isOpen = openIndex === index;
+              return (
+                <div key={index} className="py-0">
+                  <button
+                    onClick={() => toggle(index)}
+                    className="flex w-full items-center justify-between gap-4 py-6 text-left transition-colors hover:text-gold focus:outline-none"
+                    aria-expanded={isOpen}
+                  >
+                    <span className="font-heading text-base md:text-lg font-medium text-foreground">
+                      {item.question}
+                    </span>
+                    <span
+                      className={`shrink-0 text-gold transition-transform duration-300 ${
+                        isOpen ? "rotate-180" : ""
+                      }`}
+                      aria-hidden="true"
+                    >
+                      ▼
+                    </span>
+                  </button>
+                  <AnimatePresence initial={false}>
+                    {isOpen && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.3, ease: "easeInOut" }}
+                        className="overflow-hidden"
+                      >
+                        <p className="font-body text-muted-foreground leading-relaxed pb-6">
+                          {item.answer}
+                        </p>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
       {/* Bloco 3 — Autoridade e Contato */}
       <section className="bg-primary py-20 md:py-28">
         <div className="container mx-auto px-6 lg:px-12">
