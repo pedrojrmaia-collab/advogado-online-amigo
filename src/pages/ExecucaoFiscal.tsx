@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
-import { Unlock, FileSearch, ShieldCheck, MessageCircle, Phone, Mail, MapPin } from "lucide-react";
+import { Unlock, FileSearch, ShieldCheck, Handshake, Scale, MessageCircle, Phone, Mail, MapPin } from "lucide-react";
+
 
 const WHATSAPP_URL =
   "https://wa.me/5586998348891?text=Ol%C3%A1%2C%20recebi%20uma%20cita%C3%A7%C3%A3o%20de%20execu%C3%A7%C3%A3o%20fiscal%20e%20preciso%20de%20ajuda%20urgente";
