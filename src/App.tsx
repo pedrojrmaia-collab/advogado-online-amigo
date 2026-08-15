@@ -7,6 +7,7 @@ import Index from "./pages/Index";
 import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
 import Tributario from "./pages/Tributario";
+import ExecucaoFiscal from "./pages/ExecucaoFiscal";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
