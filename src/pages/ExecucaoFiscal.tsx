@@ -1,4 +1,5 @@
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Unlock, FileSearch, ShieldCheck, Handshake, Scale, MessageCircle, Phone, Mail, MapPin } from "lucide-react";
 
 
@@ -44,8 +45,40 @@ const contacts = [
   { icon: MapPin, label: "Endereço", value: ADDRESS, href: MAPS_URL },
 ];
 
+const faq = [
+  {
+    question: "Discutir a dívida não vai piorar minha situação com o fisco?",
+    answer:
+      "Não. A defesa é um direito processual, exercida dentro do próprio processo, e não gera represália — os prazos e as cobranças correm de qualquer forma, com ou sem defesa.",
+  },
+  {
+    question: "Não é melhor simplesmente pagar?",
+    answer:
+      "Às vezes é — e um bom exame diz isso com franqueza. Pagar, discutir, transacionar ou aguardar são decisões que dependem do que a análise do título e dos cálculos mostrar.",
+  },
+  {
+    question: "Preciso de advogado da minha cidade?",
+    answer:
+      "Não. A execução fiscal federal corre em meio eletrônico e a defesa independe de presença física. O escritório atua em processos de todo o país.",
+  },
+  {
+    question: "Já fui citado. Ainda dá tempo?",
+    answer:
+      "Depende da data da citação e da fase do processo — por isso a análise do prazo é a primeira coisa que o escritório verifica. Quanto antes o exame começar, mais alternativas existem.",
+  },
+  {
+    question: "Quanto custa a análise?",
+    answer:
+      "Os honorários dependem da complexidade do caso e são sempre formalizados em contrato escrito, apresentado antes de qualquer contratação.",
+  },
+];
+
 const ExecucaoFiscal = () => {
-  return (
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+
+  const toggle = (index: number) => {
+    setOpenIndex((current) => (current === index ? null : index));
+  };
     <div className="min-h-screen bg-background">
       {/* Header */}
       <header className="absolute top-0 left-0 right-0 z-40">
