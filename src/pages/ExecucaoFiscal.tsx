@@ -114,7 +114,7 @@ const ExecucaoFiscal = () => {
           </motion.div>
 
           <div className="grid gap-8 md:gap-10 lg:grid-cols-3">
-            {cards.map((card, i) => (
+            {cards.slice(0, 3).map((card, i) => (
               <motion.div
                 key={card.title}
                 initial={{ opacity: 0, y: 24 }}
@@ -132,6 +132,26 @@ const ExecucaoFiscal = () => {
                 <p className="font-body text-muted-foreground leading-relaxed">{card.text}</p>
               </motion.div>
             ))}
+            <div className="lg:col-span-3 flex flex-col lg:flex-row justify-center gap-8 md:gap-10">
+              {cards.slice(3).map((card, i) => (
+                <motion.div
+                  key={card.title}
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.3 + i * 0.1 }}
+                  className="w-full lg:w-1/3 rounded-2xl border border-border bg-card p-8 md:p-9 shadow-sm transition-all hover:border-gold/50 hover:shadow-lg"
+                >
+                  <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10">
+                    <card.icon className="h-6 w-6 text-gold" />
+                  </div>
+                  <h3 className="font-heading text-xl font-semibold text-foreground mb-3">
+                    {card.title}
+                  </h3>
+                  <p className="font-body text-muted-foreground leading-relaxed">{card.text}</p>
+                </motion.div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
